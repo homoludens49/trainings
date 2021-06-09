@@ -4,7 +4,9 @@ const reverseInt = require("./reverseInt");
 const capitalizeStr = require("./capitalize");
 const maxCharacters = require("./maxcharacters");
 const fizzBuzz = require("./fizzbuzz");
-const longestWord = require("./longestWord")
+const longestWord = require("./longestWord");
+const arrayChunk = require("./arrayChunk");
+
 test("reverse string function exist", () => {
   expect(reverseStr).toBeDefined();
 });
@@ -19,10 +21,10 @@ test("Palindrome function exist", () => {
   expect(checkPalindrome).toBeDefined();
 });
 test("Check if the word is a palindrome", () => {
-  expect(checkPalindrome('racecar')).toBeTruthy();
+  expect(checkPalindrome("racecar")).toBeTruthy();
 });
 test("Check if the word is NOT a palindrome", () => {
-  expect(checkPalindrome('hello')).toBeFalsy()
+  expect(checkPalindrome("hello")).toBeFalsy();
 });
 
 test("reverseInt function exist", () => {
@@ -36,16 +38,17 @@ test("capitalizeStr function exist", () => {
   expect(capitalizeStr).toBeDefined();
 });
 test("let me go motherfucker === Let Me Go Motherfucker", () => {
-  expect(capitalizeStr('let me go motherfucker')).toBe('Let Me Go Motherfucker');
+  expect(capitalizeStr("let me go motherfucker")).toBe(
+    "Let Me Go Motherfucker"
+  );
 });
 
 test("maxCharacters function exist", () => {
   expect(fizzBuzz).toBeDefined();
 });
 test("Check the most common letter in a word/ sentence => javascript === a", () => {
-  expect(maxCharacters('javascript')).toBe('a');
+  expect(maxCharacters("javascript")).toBe("a");
 });
-
 
 test("fizzBuzz function exist", () => {
   expect(fizzBuzz).toBeDefined();
@@ -55,15 +58,35 @@ test("longestWord function exist", () => {
   expect(longestWord).toBeDefined();
 });
 test("longestWord returns the longest word in a sentence", () => {
-  expect(longestWord("Hello , im currently working")).toEqual('currently')
-})
+  expect(longestWord("Hello , im currently working")).toEqual("currently");
+});
 test("longestWord returns the longest word in a sentence", () => {
-  expect(longestWord("Hello,,,,,,,,,,,,,,,,,, im currently working on a superpowerfullturbine")).toEqual('superpowerfullturbine')
-})
+  expect(
+    longestWord(
+      "Hello,,,,,,,,,,,,,,,,,, im currently working on a superpowerfullturbine"
+    )
+  ).toEqual("superpowerfullturbine");
+});
 test("longestWord returns the longest words if there are multiple of same length", () => {
-  expect(longestWord("Hello there , im  here")).toEqual(["hello", "there"])
-})
+  expect(longestWord("Hello there , im  here")).toEqual(["hello", "there"]);
+});
 
 test("longestWord returns the longest words if there are multiple of same length AND ignore commas, dots etc", () => {
-  expect(longestWord("Hello,... there,,,,,,,,,,,,,,  im  here")).toEqual(['hello', 'there'])
-})
+  expect(longestWord("Hello,... there,,,,,,,,,,,,,,  im  here")).toEqual([
+    "hello",
+    "there",
+  ]);
+});
+
+test("arrayChunk function exist", () => {
+  expect(arrayChunk).toBeDefined();
+});
+test("arrayChunk split array in smaler arrays by number 2", () => {
+  expect(arrayChunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)).toEqual([[1,2],[3,4],[5,6],[7,8],[9,10]]);
+});
+test("arrayChunk split array in smaler arrays by number 3", () => {
+    expect(arrayChunk([1, 2, 3, 4, 5, 6, 7, 8, 9], 3)).toEqual([[1,2,3],[4,5,6],[7,8,9]])
+});
+test("arrayChunk split array in smaler arrays by number 3 and remainder goes in last array", () => {
+  expect(arrayChunk([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)).toEqual([[1,2,3],[4,5,6],[7,8,9],[10]])
+});
